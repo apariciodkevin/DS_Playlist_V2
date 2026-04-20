@@ -8,9 +8,26 @@ java.io.File is how it represents pathfile on the disk
  */
 import java.awt.Desktop;
 import java.io.File;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println("===== Play THAT LIST =====");
+        System.out.println("      == WELCOME! ==");
+        System.out.println();
+        System.out.println("My Library:");
+
+        showLibrary();
+        System.out.println();
+        menu();
+
+
+
+
+
+
+        // Program sets up the music library
 
        /* File mp3File = new File("audio/20 Cigarettes--Morgan Wallen.mp3");
         if (Desktop.isDesktopSupported()) {
@@ -23,43 +40,56 @@ public class Main {
                 }
             }
         } */
-        SongNode song1 = new SongNode("20 Cigaretttes", "Morgan Wallen", "../audio/20 Cigarettes--Morgan Wallen.mp3");
-        SongNode song2 = new SongNode("All the Love", "Ye", "../audio/All the love--Ye.mp3");
-        SongNode song3 = new SongNode("American Girls", "Harry Styles", "../audio/American Girls--Harry Styles.mp3");
-        SongNode song4 = new SongNode("E85", "Don Toliver", "../audio/E85--Don Toliver.mp3");
-        SongNode song5 = new SongNode("Hooligan", "BTS", "../audio/Hooligan--BTS.mp3");
-        SongNode song6 = new SongNode("Risk it All", "Bruno Mars", "../audio/Risk it all--Bruno Mars.mp3");
-        SongNode song7 = new SongNode("Seeing Someong", "Luke Combs", "../audio/Seeing Someone--Luke Combs.m-3");
-        SongNode song8 = new SongNode("So Easy", "Olivia Dean", "../audio/SoEasy--Olivia Dean.mp3");
-        SongNode song9 = new SongNode("Saint James Infirmary", "Louis Armstrong", "../audio/song1.mp3");
-        SongNode song10 = new SongNode("Turista", "BadBunny", "../audio/Turista--Bad Bunny.mp3");
 
+    }
 
+    // Set up libraries that hold song information [indexed]
+    static String [] librarySong = {"20 Cigarettes", "All the Love", "American Girls", "E85",
+            "Hooligan", "Risk it All", "Seeing Someone", "So Easy", "Saint James Infirmary",
+            "Turista"};
 
-        Playlist playlist = new Playlist();
-        playlist.displayPlaylist();
-        playlist.addSong(song1);
-        playlist.displayPlaylist();
-        playlist.addSong(song4);
-        playlist.addSong(song7);
-        playlist.displayPlaylist();
-        playlist.addSong(song2);
-        playlist.getPlaying();
-        System.out.println(playlist.getSize());
-        System.out.println(playlist.getPlaying().getSongName());
-        playlist.nextSong();
-        System.out.println(playlist.getPlaying().getSongName());
-        playlist.nextSong();
-        playlist.nextSong();
-        System.out.println(playlist.getPlaying().getSongName());
-        playlist.prevSong();
-        System.out.println(playlist.getPlaying().getSongName());
+    static String [] libraryArtist = {"Morgan Wallen", "Ye", "Harry Styles", "Don Toliver",
+            "BTS", "Bruno Mars", "Luke Combs", "Olivia Dean", "Louis Armstrong",
+            "Bad Bunny" };
 
+    static String [] libraryPath = {"audio/20 Cigarettes--Morgan Wallen.mp3", "audio/All the Love--Ye.mp3",
+            "audio/American Girls--Harry Styles.mp3", "audio/E85--Don Toliver.mp3",
+            "audio/Hooligan--BTS.mp3", "audio/Risk it All--Bruno Mars.mp3",
+            "audio/Seeing Someone--Luke Combs.mp3", "audio/SoEasy--Olivia Dean.mp3",
+            "audio/song1.mp3", "audio/Turista--Bad Bunny.mp3"};
 
+    public static void showLibrary(){
+        int counter = 1;
+        for (int i = 0; i < librarySong.length; i++){
+            System.out.println(counter + ". " + librarySong[i] + " - " + libraryArtist[i]);
+            counter++;
+        }
+    }
 
+    public static void menu(){
+        // initialize scanner for user input
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println("=== MENU ===");
+        System.out.println("1. Add Song");
+        System.out.println("2. Remove Song");
+        System.out.println("3. Play");
+        System.out.println("4. Exit");
 
+        int choice = sc.nextInt();
+        // Validate user input
+        while (choice < 1 || choice > 4){
+            System.out.println("INVALID INPUT");
+            System.out.println("Choose from the options below:");
+            System.out.println();
 
+            System.out.println("=== MENU ===");
+            System.out.println("1. Add Song");
+            System.out.println("2. Remove Song");
+            System.out.println("3. Play");
+            System.out.println("4. Exit");
+            choice = sc.nextInt();
 
+        }
     }
 }

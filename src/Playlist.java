@@ -13,6 +13,7 @@ public class Playlist {
         playing = null;
     }
 
+
     // Methods
 
     public int getSize(){
