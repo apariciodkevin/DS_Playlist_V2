@@ -3,26 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        String [] songLibrary  = {
-                "20 Cigarettes", "All the Love", "American Girls",
-                "E85", "Hooligan", "Risk it All", "Seeing Someone",
-                "So Easy", "Saint James Infirmary", "Turista"
-        };
-
-        String [] artistLibrary = {
-                "Morgan Wallen", "Ye", "Harry Styles", "Don Toliver",
-                "BTS", "Bruno Mars", "Luke Combs", "Olivia Dean",
-                "Louis Armstrong", "Bad Bunny"
-        };
-
-        String [] filePathLibrary = {"audio/20 Cigarettes--Morgan Wallen.wav",
-                "audio/All the Love--Ye.wav", "audio/American Girls--Harry Styles.wav",
-                "audio/E85--Don Toliver.wav", "audio/Hooligan--BTS.wav",
-                "audio/Risk it All--Bruno Mars.wav", "audio/Seeing Someone--Luke Combs.wav",
-                "audio/So Easy--Olivia Dean.wav", "audio/song1.wav",
-                "audio/Turista--Bad Bunny.wav"
-        };
-
         System.out.println("=====JAMATKEV 3000======");
         System.out.println();
         System.out.println("   ===Your Playlist===");
@@ -110,7 +90,23 @@ public class Main {
                 }
             }
             else if (choice == 6){
+                System.out.print("Enter song title to add from library: ");
+                String title = sc.nextLine().trim();
 
+                boolean find = false;
+                for (int i = 0; i < songLibrary.length; i++){
+                    if (songLibrary[i].equalsIgnoreCase(title)){
+                        SongNode newSong = new SongNode(songLibrary[i], artistLibrary[i], filePathLibrary[i]);
+                        playlist.addSong(newSong);
+                        System.out.println("Added: " + songLibrary[i] + " - " + artistLibrary[i]);
+                        find = true;
+                        break;
+                    }
+                }
+
+                if (!find){
+                    System.out.println("Song \"" + title + "\" is not in the library.");
+                }
             }
             else if (choice == 7){
                 System.out.println("Enter song to remove: ");
@@ -130,4 +126,25 @@ public class Main {
         System.out.println("Program Is Now Closed");
 
     }
+
+    static String [] songLibrary  = {
+            "20 Cigarettes", "All the Love", "American Girls",
+            "E85", "Hooligan", "Risk it All", "Seeing Someone",
+            "So Easy", "Saint James Infirmary", "Turista"
+    };
+
+    static String [] artistLibrary = {
+            "Morgan Wallen", "Ye", "Harry Styles", "Don Toliver",
+            "BTS", "Bruno Mars", "Luke Combs", "Olivia Dean",
+            "Louis Armstrong", "Bad Bunny"
+    };
+
+    static String [] filePathLibrary = {"audio/20 Cigarettes--Morgan Wallen.wav",
+            "audio/All the Love--Ye.wav", "audio/American Girls--Harry Styles.wav",
+            "audio/E85--Don Toliver.wav", "audio/Hooligan--BTS.wav",
+            "audio/Risk it All--Bruno Mars.wav", "audio/Seeing Someone--Luke Combs.wav",
+            "audio/So Easy--Olivia Dean.wav", "audio/song1.wav",
+            "audio/Turista--Bad Bunny.wav"
+    };
+
 }
