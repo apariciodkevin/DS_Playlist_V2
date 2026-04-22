@@ -61,8 +61,8 @@ public class Playlist {
         else if (playing.getNext() != null) {
             playing = playing.getNext(); // traverse to the next song
         } else {
-                playing = head; // if there is nowhere else to point to then loop the playlist back to the start
-            }
+            playing = head; // if there is nowhere else to point to then loop the playlist back to the start
+        }
         return playing;
     }
     public SongNode prevSong(){
@@ -127,11 +127,26 @@ public class Playlist {
             size--;
 
         } else { // if the song to delete is in the middle of the  linked list.
-             search.getNext().setPrev(search.getPrev());
-             search.getPrev().setNext(search.getNext());
-             size--;
+            search.getNext().setPrev(search.getPrev());
+            search.getPrev().setNext(search.getNext());
+            size--;
 
         }
+
+    }
+
+    // For the GUI
+
+    public SongNode getHead(){ //Necessary for the Gui so it can start iterating through the playlist.
+        return head;
+    }
+    public void setPlaying(int num){ // if the user jumps from track 1 to track 4
+        SongNode tempPlaying = head; // the playing pointer needs to skip the song x amount of times.
+
+        for (int i = 0; i < num; i++){
+            tempPlaying = tempPlaying.getNext(); // does x amount of skips.
+        }
+        playing = tempPlaying; // set it to plahing variable
 
     }
 
