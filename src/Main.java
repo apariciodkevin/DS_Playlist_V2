@@ -50,9 +50,9 @@ public class Main {
             // Menu layout
             System.out.println("1. Play");
             System.out.println("2. Pause");
-            System.out.println("3. Skip");
+            System.out.println("3. Resume");
             System.out.println("4. Prev");
-            System.out.println("5. Resume");
+            System.out.println("5. Skip");
             System.out.println("6. Add");
             System.out.println("7. Remove");
             System.out.println("8. List Playlist");
@@ -71,6 +71,58 @@ public class Main {
                 System.out.println("Please choose a VALID option");
                 System.out.println("Options 1 - 9");
                 choice = sc.nextInt();
+            }
+
+            if (choice == 1){
+                SongNode current = playlist.getPlaying();
+                if (current == null){
+                    System.out.println("Playlist is Empty");
+                } else {
+                    musicPlayer.play(current.getFilePath());
+                }
+
+            }
+            else if (choice == 2){
+                System.out.println("Music Pause..");
+                musicPlayer.pause();
+            }
+            else if (choice == 3){
+                musicPlayer.resume();
+            }
+            else if (choice == 4){
+                SongNode prev = playlist.prevSong();
+                if (prev == null){
+                    System.out.println("Playlist is Empty");
+                } else {
+                    System.out.println("Now Playing: " + prev.getSongName() + " - "
+                    + prev.getArtist());
+                }
+
+            }
+            else if (choice == 5){
+                SongNode skip = playlist.nextSong();
+
+                if (skip == null){
+                    System.out.println("Playlist is empty");
+                } else {
+                    System.out.println("Now Playing: " + skip.getSongName() + " - "
+                            + skip.getArtist());
+                }
+            }
+            else if (choice == 6){
+
+            }
+            else if (choice == 7){
+                System.out.println("Enter song to remove: ");
+                String songname = sc.nextLine().trim();
+                playlist.removeSong(songname);
+            }
+            else if (choice == 8){
+                System.out.println();
+                System.out.println("===Your Current Playlist===");
+                System.out.println();
+                playlist.displayPlaylist();
+                System.out.println();
             }
 
 
