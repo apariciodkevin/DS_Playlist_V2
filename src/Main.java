@@ -58,6 +58,7 @@ public class Main {
                 if (current == null){
                     System.out.println("Playlist is Empty");
                 } else {
+                    System.out.println("Now Playing: " + current.getSongName() + " - " + current.getArtist());
                     musicPlayer.play(current.getFilePath());
                 }
 
@@ -105,6 +106,7 @@ public class Main {
                 }
 
                 if (!find){
+
                     System.out.println("Song \"" + title + "\" is not in the library.");
                 }
             }
